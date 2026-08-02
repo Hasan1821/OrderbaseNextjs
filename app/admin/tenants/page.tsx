@@ -10,7 +10,7 @@ export default function TenantsPage() {
     <>
       <AdminTopbar title="Tenants (Businesses)" />
 
-      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <main className="min-h-0 flex-1 space-y-5 overflow-y-auto p-4 sm:p-6 lg:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-500 sm:w-auto">
             <Search className="h-4 w-4 shrink-0" />

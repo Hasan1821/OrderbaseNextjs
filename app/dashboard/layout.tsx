@@ -1,6 +1,7 @@
 import DashboardSidebar from '@/components/DashboardSidebar'
 import { SidebarProvider } from '@/components/SidebarContext'
 import MobileOverlay from '@/components/MobileOverlay'
+import AuthGuard from '@/components/AuthGuard'
 
 export default function DashboardLayout({
   children,
@@ -8,12 +9,16 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen bg-gray-50">
-        <DashboardSidebar />
-        <MobileOverlay />
-        <div className="flex min-w-0 flex-1 flex-col">{children}</div>
-      </div>
-    </SidebarProvider>
+    <AuthGuard>
+      <SidebarProvider>
+        <div className="flex h-screen overflow-hidden bg-gray-50">
+          <DashboardSidebar />
+          <MobileOverlay />
+          <div className="flex h-screen min-w-0 flex-1 flex-col overflow-hidden">
+            {children}
+          </div>
+        </div>
+      </SidebarProvider>
+    </AuthGuard>
   )
 }

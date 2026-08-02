@@ -1,8 +1,10 @@
 'use client'
 
-import { Search, Bell, HelpCircle, ChevronDown, Menu } from 'lucide-react'
+import { Search, Bell, HelpCircle, ChevronDown, Menu, LogOut } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useSidebar } from '@/components/SidebarContext'
+import { logout } from '@/lib/auth'
 
 export default function DashboardTopbar({
   title,
@@ -12,9 +14,10 @@ export default function DashboardTopbar({
   subtitle?: string
 }) {
   const { setOpen } = useSidebar()
+  const router = useRouter()
 
   return (
-    <header className="flex items-center justify-between gap-3 border-b border-gray-100 bg-white px-4 py-4 sm:px-6 lg:px-8">
+    <header className="flex shrink-0 items-center justify-between gap-3 border-b border-gray-100 bg-white px-4 py-4 sm:px-6 lg:px-8">
       <div className="flex min-w-0 items-center gap-3">
         <button
           onClick={() => setOpen(true)}
@@ -67,6 +70,17 @@ export default function DashboardTopbar({
           </div>
           <ChevronDown className="hidden h-4 w-4 text-gray-400 sm:block" />
         </Link>
+
+        <button
+          onClick={() => {
+            logout()
+            router.push('/login')
+          }}
+          className="hidden rounded-lg p-2 text-gray-400 hover:bg-gray-50 hover:text-gray-600 sm:block"
+          aria-label="Log out"
+        >
+          <LogOut className="h-5 w-5" />
+        </button>
       </div>
     </header>
   )

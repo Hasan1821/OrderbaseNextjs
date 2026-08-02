@@ -14,10 +14,13 @@ import {
   ShieldCheck,
   MessageCircle,
 } from 'lucide-react'
+import { createSessionFromSignup } from '@/lib/auth'
 
 export default function SignupPage() {
   const router = useRouter()
   const [showPass, setShowPass] = useState(false)
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
 
   return (
     <div className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
@@ -98,7 +101,7 @@ export default function SignupPage() {
             </div>
             <p className="text-sm text-gray-500">
               Already have an account?{' '}
-              <Link href="/organizations" className="font-medium text-brand-600 hover:underline">
+              <Link href="/login" className="font-medium text-brand-600 hover:underline">
                 Sign in
               </Link>
             </p>
@@ -111,12 +114,19 @@ export default function SignupPage() {
             className="mt-6 space-y-4"
             onSubmit={(e) => {
               e.preventDefault()
+              createSessionFromSignup(email, fullName)
               router.push('/onboarding')
             }}
           >
             <div className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 focus-within:border-brand-400">
               <User className="h-4 w-4 text-gray-400" />
-              <input required placeholder="Full Name" className="w-full text-sm outline-none placeholder:text-gray-400" />
+              <input
+                required
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Full Name"
+                className="w-full text-sm outline-none placeholder:text-gray-400"
+              />
             </div>
             <div className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 focus-within:border-brand-400">
               <Phone className="h-4 w-4 text-gray-400" />
@@ -124,7 +134,12 @@ export default function SignupPage() {
             </div>
             <div className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 focus-within:border-brand-400">
               <Mail className="h-4 w-4 text-gray-400" />
-              <input placeholder="Email Address (Optional)" className="w-full text-sm outline-none placeholder:text-gray-400" />
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address (Optional)"
+                className="w-full text-sm outline-none placeholder:text-gray-400"
+              />
             </div>
             <div className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 focus-within:border-brand-400">
               <Lock className="h-4 w-4 text-gray-400" />

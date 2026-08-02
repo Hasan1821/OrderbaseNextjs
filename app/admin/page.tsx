@@ -80,7 +80,7 @@ export default function AdminDashboardPage() {
     <>
       <AdminTopbar title="Admin Dashboard" />
 
-      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:space-y-6 sm:p-6 lg:p-8">
+      <main className="min-h-0 flex-1 space-y-5 overflow-y-auto p-4 sm:space-y-6 sm:p-6 lg:p-8">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
           <StatCard icon={Building2} iconClass="bg-brand-50 text-brand-600" label="Total Tenants" value="1,842" change="14.2%" />
           <StatCard icon={Users2} iconClass="bg-sky-50 text-sky-600" label="Active Tenants" value="1,356" change="11.7%" />

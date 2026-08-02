@@ -1,11 +1,19 @@
+'use client'
+
 import Link from 'next/link'
-import { TrendingUp, HelpCircle, ChevronDown, Plus, UserPlus, ShieldCheck, Store, Footprints, Box } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { TrendingUp, HelpCircle, ChevronDown, Plus, UserPlus, ShieldCheck, Store, Footprints, Box, LogOut } from 'lucide-react'
 import { organizations } from '@/lib/data'
+import { logout } from '@/lib/auth'
+import AuthGuard from '@/components/AuthGuard'
 
 const icons = [Store, Footprints, Box]
 
 export default function OrganizationsPage() {
+  const router = useRouter()
+
   return (
+    <AuthGuard>
     <div className="min-h-screen bg-gray-50">
       <header className="flex items-center justify-between border-b border-gray-100 bg-white px-4 py-4 sm:px-8">
         <div className="flex items-center gap-2">
@@ -23,6 +31,16 @@ export default function OrganizationsPage() {
             <span className="hidden text-sm font-medium text-gray-900 sm:block">Shovon Ahmed</span>
             <ChevronDown className="hidden h-4 w-4 text-gray-400 sm:block" />
           </div>
+          <button
+            onClick={() => {
+              logout()
+              router.push('/login')
+            }}
+            className="rounded-lg p-2 text-gray-400 hover:bg-gray-50 hover:text-gray-600"
+            aria-label="Log out"
+          >
+            <LogOut className="h-5 w-5" />
+          </button>
         </div>
       </header>
 
@@ -107,5 +125,6 @@ export default function OrganizationsPage() {
         </p>
       </main>
     </div>
+    </AuthGuard>
   )
 }
