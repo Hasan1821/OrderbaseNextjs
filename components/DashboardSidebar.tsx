@@ -17,7 +17,9 @@ import {
   Settings,
   CreditCard,
   ShoppingBasket,
+  X,
 } from 'lucide-react'
+import { useSidebar } from '@/components/SidebarContext'
 
 const primaryNav = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -40,22 +42,34 @@ const managementNav = [
 
 export default function DashboardSidebar() {
   const pathname = usePathname()
+  const { open, setOpen } = useSidebar()
 
   const isActive = (href: string) =>
     href === '/dashboard' ? pathname === '/dashboard' : pathname?.startsWith(href)
 
   return (
-    <aside className="flex h-screen w-64 shrink-0 flex-col border-r border-gray-100 bg-white">
-      <div className="flex items-center gap-2 border-b border-gray-100 px-6 py-5">
+    <aside
+      className={`fixed inset-y-0 left-0 z-40 flex h-screen w-72 shrink-0 -translate-x-full flex-col border-r border-gray-100 bg-white transition-transform duration-200 ease-in-out sm:w-80 lg:static lg:w-64 lg:translate-x-0 ${
+        open ? 'translate-x-0' : ''
+      }`}
+    >
+      <div className="flex items-center gap-2 border-b border-gray-100 px-4 py-5 sm:px-6">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-500 text-white">
           <ShoppingBasket className="h-5 w-5" />
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <p className="text-base font-bold leading-tight text-gray-900">
             Fashion <span className="text-accent-500">Hub</span>
           </p>
-          <p className="text-xs text-gray-400">fashionhub.orderbase.com</p>
+          <p className="truncate text-xs text-gray-400">fashionhub.orderbase.com</p>
         </div>
+        <button
+          onClick={() => setOpen(false)}
+          className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-50 lg:hidden"
+          aria-label="Close menu"
+        >
+          <X className="h-5 w-5" />
+        </button>
       </div>
 
       <nav className="scrollbar-none flex-1 overflow-y-auto px-3 py-4">

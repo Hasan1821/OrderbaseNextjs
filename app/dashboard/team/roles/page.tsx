@@ -22,10 +22,10 @@ export default function RolesPermissionsPage() {
     <>
       <DashboardTopbar title="Assign Role & Permissions" subtitle="Manage roles and permissions for this team member." />
 
-      <main className="flex-1 space-y-5 overflow-y-auto p-8">
-        <div className="flex items-center justify-between rounded-xl border border-gray-100 bg-white p-5 shadow-card">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-100 text-sm font-bold text-accent-600">
+      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col gap-5 rounded-xl border border-gray-100 bg-white p-5 shadow-card lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-100 text-sm font-bold text-accent-600">
               TA
             </div>
             <div>
@@ -51,10 +51,10 @@ export default function RolesPermissionsPage() {
             </div>
           </div>
           <div className="flex gap-2">
-            <button className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50">
+            <button className="flex-1 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50 lg:flex-none">
               Cancel
             </button>
-            <button className="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-600">
+            <button className="flex-1 rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-600 lg:flex-none">
               Save Changes
             </button>
           </div>

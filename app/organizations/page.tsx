@@ -7,7 +7,7 @@ const icons = [Store, Footprints, Box]
 export default function OrganizationsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="flex items-center justify-between border-b border-gray-100 bg-white px-8 py-4">
+      <header className="flex items-center justify-between border-b border-gray-100 bg-white px-4 py-4 sm:px-8">
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
             <TrendingUp className="h-4 w-4" />
@@ -15,18 +15,18 @@ export default function OrganizationsPage() {
           <span className="text-lg font-bold text-gray-900">OrderBase</span>
         </div>
         <div className="flex items-center gap-3">
-          <button className="rounded-lg p-2 text-gray-400 hover:bg-gray-50">
+          <button className="hidden rounded-lg p-2 text-gray-400 hover:bg-gray-50 sm:block">
             <HelpCircle className="h-5 w-5" />
           </button>
           <div className="flex items-center gap-2">
             <img src="https://i.pravatar.cc/64?img=13" alt="Shovon Ahmed" className="h-8 w-8 rounded-full object-cover" />
-            <span className="text-sm font-medium text-gray-900">Shovon Ahmed</span>
-            <ChevronDown className="h-4 w-4 text-gray-400" />
+            <span className="hidden text-sm font-medium text-gray-900 sm:block">Shovon Ahmed</span>
+            <ChevronDown className="hidden h-4 w-4 text-gray-400 sm:block" />
           </div>
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-16 text-center">
+      <main className="mx-auto max-w-5xl px-4 py-10 text-center sm:px-6 sm:py-16">
         <h1 className="text-2xl font-bold text-gray-900">Welcome back, Shovon! 👋</h1>
         <p className="mt-1 text-gray-500">You have access to multiple organizations.</p>
         <h2 className="mt-8 text-lg font-semibold text-gray-900">Choose an organization to continue</h2>

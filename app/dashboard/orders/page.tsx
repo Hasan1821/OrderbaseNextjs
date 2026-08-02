@@ -18,13 +18,13 @@ export default function OrdersPage() {
     <>
       <DashboardTopbar title="Orders" subtitle="Manage and track every order in one place." />
 
-      <main className="flex-1 space-y-5 overflow-y-auto p-8">
+      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:p-6 lg:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-500">
-            <Search className="h-4 w-4" />
+          <div className="flex w-full items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-500 sm:w-auto">
+            <Search className="h-4 w-4 shrink-0" />
             <input
               placeholder="Search order ID or customer..."
-              className="w-64 bg-transparent text-sm outline-none placeholder:text-gray-400"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-gray-400 sm:w-64"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -54,45 +54,47 @@ export default function OrdersPage() {
             ))}
           </div>
 
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
-                <th className="px-5 py-3 font-medium">Order ID</th>
-                <th className="px-5 py-3 font-medium">Customer</th>
-                <th className="px-5 py-3 font-medium">Channel</th>
-                <th className="px-5 py-3 font-medium">Amount</th>
-                <th className="px-5 py-3 font-medium">Status</th>
-                <th className="px-5 py-3 font-medium">Date</th>
-                <th className="px-5 py-3" />
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((o) => (
-                <tr key={o.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
-                  <td className="px-5 py-3.5 font-medium text-brand-600">{o.id}</td>
-                  <td className="px-5 py-3.5 text-gray-700">{o.customer}</td>
-                  <td className="px-5 py-3.5 text-gray-400">{o.via ?? '—'}</td>
-                  <td className="px-5 py-3.5 text-gray-900">{o.amount}</td>
-                  <td className="px-5 py-3.5">
-                    <StatusBadge status={o.status} />
-                  </td>
-                  <td className="px-5 py-3.5 text-gray-400">{o.date}</td>
-                  <td className="px-5 py-3.5 text-right">
-                    <button className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100">
-                      <MoreVertical className="h-4 w-4" />
-                    </button>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[720px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
+                  <th className="px-5 py-3 font-medium">Order ID</th>
+                  <th className="px-5 py-3 font-medium">Customer</th>
+                  <th className="px-5 py-3 font-medium">Channel</th>
+                  <th className="px-5 py-3 font-medium">Amount</th>
+                  <th className="px-5 py-3 font-medium">Status</th>
+                  <th className="px-5 py-3 font-medium">Date</th>
+                  <th className="px-5 py-3" />
                 </tr>
-              ))}
-              {filtered.length === 0 && (
-                <tr>
-                  <td colSpan={7} className="px-5 py-10 text-center text-sm text-gray-400">
-                    No orders in this status yet.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filtered.map((o) => (
+                  <tr key={o.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
+                    <td className="px-5 py-3.5 font-medium text-brand-600">{o.id}</td>
+                    <td className="px-5 py-3.5 text-gray-700">{o.customer}</td>
+                    <td className="px-5 py-3.5 text-gray-400">{o.via ?? '—'}</td>
+                    <td className="px-5 py-3.5 text-gray-900">{o.amount}</td>
+                    <td className="px-5 py-3.5">
+                      <StatusBadge status={o.status} />
+                    </td>
+                    <td className="px-5 py-3.5 text-gray-400">{o.date}</td>
+                    <td className="px-5 py-3.5 text-right">
+                      <button className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100">
+                        <MoreVertical className="h-4 w-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {filtered.length === 0 && (
+                  <tr>
+                    <td colSpan={7} className="px-5 py-10 text-center text-sm text-gray-400">
+                      No orders in this status yet.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
     </>

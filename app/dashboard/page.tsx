@@ -36,7 +36,7 @@ export default function DashboardPage() {
     <>
       <DashboardTopbar title="Welcome back, Shovon 👋" subtitle="Here's what's happening with your business today." />
 
-      <main className="flex-1 space-y-6 overflow-y-auto p-8">
+      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:space-y-6 sm:p-6 lg:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-600">
             Jul 20, 2024 – Aug 18, 2024
@@ -113,30 +113,32 @@ export default function DashboardPage() {
                 View all
               </Link>
             </div>
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
-                  <th className="px-5 py-3 font-medium">Order ID</th>
-                  <th className="px-5 py-3 font-medium">Customer</th>
-                  <th className="px-5 py-3 font-medium">Amount</th>
-                  <th className="px-5 py-3 font-medium">Status</th>
-                  <th className="px-5 py-3 font-medium">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentOrders.slice(0, 4).map((o) => (
-                  <tr key={o.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
-                    <td className="px-5 py-3.5 font-medium text-brand-600">{o.id}</td>
-                    <td className="px-5 py-3.5 text-gray-700">{o.customer}</td>
-                    <td className="px-5 py-3.5 text-gray-900">{o.amount}</td>
-                    <td className="px-5 py-3.5">
-                      <StatusBadge status={o.status} />
-                    </td>
-                    <td className="px-5 py-3.5 text-gray-400">{o.date}</td>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[560px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
+                    <th className="px-5 py-3 font-medium">Order ID</th>
+                    <th className="px-5 py-3 font-medium">Customer</th>
+                    <th className="px-5 py-3 font-medium">Amount</th>
+                    <th className="px-5 py-3 font-medium">Status</th>
+                    <th className="px-5 py-3 font-medium">Date</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {recentOrders.slice(0, 4).map((o) => (
+                    <tr key={o.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
+                      <td className="px-5 py-3.5 font-medium text-brand-600">{o.id}</td>
+                      <td className="px-5 py-3.5 text-gray-700">{o.customer}</td>
+                      <td className="px-5 py-3.5 text-gray-900">{o.amount}</td>
+                      <td className="px-5 py-3.5">
+                        <StatusBadge status={o.status} />
+                      </td>
+                      <td className="px-5 py-3.5 text-gray-400">{o.date}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* Business summary */}

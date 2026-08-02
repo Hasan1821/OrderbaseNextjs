@@ -33,6 +33,14 @@ Then open http://localhost:3000 — it redirects to `/signup`.
   leads somewhere (Create Account → onboarding, Continue → choose
   organization, Go to Dashboard → tenant dashboard, View all → orders,
   Roles & Permissions, etc.) actually routes there.
+- Fully responsive: both sidebars (tenant + admin) collapse into an
+  off-canvas drawer below the `lg` breakpoint, opened via the hamburger
+  icon in the topbar and closed by tapping the backdrop, the `X`, or
+  navigating. Topbars collapse search/help/labels progressively on
+  smaller screens. All data tables scroll horizontally on narrow
+  viewports instead of squashing. Stat grids and content grids reflow
+  from 1–2 columns on mobile up to full multi-column layouts on
+  laptop/desktop.
 - Charts use `recharts`; icons use `lucide-react`.
 - All data in `lib/data.ts` is mock data — swap in real API calls when ready.
 - Tailwind theme tokens (brand indigo + accent orange) live in

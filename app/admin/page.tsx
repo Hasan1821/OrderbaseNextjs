@@ -80,8 +80,8 @@ export default function AdminDashboardPage() {
     <>
       <AdminTopbar title="Admin Dashboard" />
 
-      <main className="flex-1 space-y-6 overflow-y-auto p-8">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-6">
+      <main className="flex-1 space-y-5 overflow-y-auto p-4 sm:space-y-6 sm:p-6 lg:p-8">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
           <StatCard icon={Building2} iconClass="bg-brand-50 text-brand-600" label="Total Tenants" value="1,842" change="14.2%" />
           <StatCard icon={Users2} iconClass="bg-sky-50 text-sky-600" label="Active Tenants" value="1,356" change="11.7%" />
           <StatCard icon={ShoppingCart} iconClass="bg-amber-50 text-amber-600" label="Total Orders" value="256,432" change="18.6%" />
@@ -168,41 +168,43 @@ export default function AdminDashboardPage() {
                 View All Tenants
               </Link>
             </div>
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
-                  <th className="px-5 py-3 font-medium">Tenant / Business</th>
-                  <th className="px-5 py-3 font-medium">Plan</th>
-                  <th className="px-5 py-3 font-medium">Orders (30d)</th>
-                  <th className="px-5 py-3 font-medium">Revenue (30d)</th>
-                  <th className="px-5 py-3 font-medium">Status</th>
-                  <th className="px-5 py-3" />
-                </tr>
-              </thead>
-              <tbody>
-                {tenants.map((t) => (
-                  <tr key={t.name} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
-                    <td className="px-5 py-3.5">
-                      <p className="font-medium text-gray-900">{t.name}</p>
-                      <p className="text-xs text-gray-400">{t.domain}</p>
-                    </td>
-                    <td className="px-5 py-3.5">
-                      <span className="rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-600">{t.plan}</span>
-                    </td>
-                    <td className="px-5 py-3.5 text-gray-700">{t.orders.toLocaleString()}</td>
-                    <td className="px-5 py-3.5 text-gray-900">{t.revenue}</td>
-                    <td className="px-5 py-3.5">
-                      <StatusBadge status={t.status} />
-                    </td>
-                    <td className="px-5 py-3.5 text-right">
-                      <button className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100">
-                        <MoreVertical className="h-4 w-4" />
-                      </button>
-                    </td>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[640px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-gray-100 text-xs uppercase tracking-wide text-gray-400">
+                    <th className="px-5 py-3 font-medium">Tenant / Business</th>
+                    <th className="px-5 py-3 font-medium">Plan</th>
+                    <th className="px-5 py-3 font-medium">Orders (30d)</th>
+                    <th className="px-5 py-3 font-medium">Revenue (30d)</th>
+                    <th className="px-5 py-3 font-medium">Status</th>
+                    <th className="px-5 py-3" />
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {tenants.map((t) => (
+                    <tr key={t.name} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/60">
+                      <td className="px-5 py-3.5">
+                        <p className="font-medium text-gray-900">{t.name}</p>
+                        <p className="text-xs text-gray-400">{t.domain}</p>
+                      </td>
+                      <td className="px-5 py-3.5">
+                        <span className="rounded-md bg-brand-50 px-2 py-1 text-xs font-medium text-brand-600">{t.plan}</span>
+                      </td>
+                      <td className="px-5 py-3.5 text-gray-700">{t.orders.toLocaleString()}</td>
+                      <td className="px-5 py-3.5 text-gray-900">{t.revenue}</td>
+                      <td className="px-5 py-3.5">
+                        <StatusBadge status={t.status} />
+                      </td>
+                      <td className="px-5 py-3.5 text-right">
+                        <button className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100">
+                          <MoreVertical className="h-4 w-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div className="space-y-6">
